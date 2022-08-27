@@ -1,1 +1,1 @@
-# kubernetes - config examples
+# kubernetes config examples
