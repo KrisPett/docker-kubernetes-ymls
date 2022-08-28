@@ -1,2 +1,1 @@
 # Kubernetes Config Examples
-yes
