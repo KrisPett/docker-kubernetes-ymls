@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaincue-client-deployment
+  labels:
+    app: chaincue-portal-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chaincue-client
+  revisionHistoryLimit: 0
+  template:
+    metadata:
+      labels:
+        app: chaincue-client
+    spec:
+      containers:
+        - name: chaincue-client
+          image: registry.gitlab.com/chaincue-client:main
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: gitlab-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chaincue-client-service
+spec:
+#  type: NodePort
+  selector:
+    app: chaincue-client
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+#      nodePort: 30000
+
+

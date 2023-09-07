@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chaincue-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+    - hosts:
+        - chaincue.minikube
+      secretName: selfsigned-cert-tls
+  rules:
+    - host: chaincue.minikube
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: chaincue-service
+                port:
+                  number: 80
