@@ -21,6 +21,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: backend-configmap
+          resources:
+            limits:
+              cpu: 2000m
+            requests:
+              cpu: 1000m
       imagePullSecrets:
         - name: gitlab-registry
 
@@ -30,7 +35,7 @@ kind: Service
 metadata:
   name: backend
 spec:
-#  type: NodePort
+  #  type: NodePort
   selector:
     app: backend
   ports:
