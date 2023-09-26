@@ -1,0 +1,46 @@
+# https://127.0.0.1:8200/ui/vault/init
+# hvs.72ZGhw0OTuBp4QM4YwjQPXX2
+# lZX778XS9TRvESpKs7U66qn3PVuh8+2QrZILfy5te7I3
+# wSGpbcyHbkyYcsg0b51mNS+BHxYh2Cpas2xVR9SVbPZB
+# /mXS92SITjlaaePJJ8elq+NeAYXV8zQkXlQ+lZzSaMgR
+#
+version: '3.9'
+
+services:
+  consul:
+     image: hashicorp/consul:1.16
+     container_name: consul
+     ports:
+       - "8500:8500"
+       - "8600:8600/udp"
+     volumes:
+       - ./consul-data:/consul/data
+     command: agent -server -bootstrap-expect=1 -data-dir=/consul/data -client=0.0.0.0 -ui
+     networks:
+       - chaincue_tech_net
+
+  vault:
+    image: hashicorp/vault:1.14
+    container_name: vault
+    ports:
+      - "8200:8200"
+    volumes:
+      - ./vault-config:/vault/config
+      - ./vault-data:/vault/file
+      - ./tls:/vault/tls
+    cap_add:
+      - IPC_LOCK
+    environment:
+      - VAULT_ADDR=http://127.0.0.1:8200
+      - VAULT_API_ADDR=http://127.0.0.1:8200
+    command:
+      - "server"
+    depends_on:
+      - consul
+    networks:
+      - chaincue_tech_net
+
+networks:
+  chaincue_tech_net:
+    name: chaincue_tech_net
+    driver: bridge
