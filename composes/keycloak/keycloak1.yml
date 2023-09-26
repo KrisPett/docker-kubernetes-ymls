@@ -21,7 +21,7 @@ services:
     ports:
       - "5433:5432"
     networks:
-      - chaincue-tech-net
+      - chaincue_tech_net
 
   keycloak_03_25_23:
     container_name: keycloak_03_25_23
@@ -43,13 +43,13 @@ services:
     depends_on:
       - postgres_kc_03_25_23
     networks:
-      - chaincue-tech-net
+      - chaincue_tech_net
 
 volumes:
   postgres_data_03_25_23:
     name: postgres_data_03_25_23
 
 networks:
-  chaincue-tech-net:
-    name: chaincue-tech-net
+  chaincue_tech_net:
+    name: chaincue_tech_net
     driver: bridge
