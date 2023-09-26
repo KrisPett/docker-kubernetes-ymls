@@ -1,17 +1,30 @@
 version: "3.9"
 
 services:
+  pgadmin_09_26_23:
+    container_name: pgadmin_09_26_23
+    image: dpage/pgadmin4:7
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data_09_26_23:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin_09_26_23@email.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin_09_26_23@email.com
+    networks:
+      - chaincue_tech_net
+
   postgres_kc_09_26_23:
     container_name: postgres_kc_09_26_23
     image: postgres:16
+    ports:
+      - "5433:5432"
     volumes:
       - postgres_data_kc_09_26_23:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: keycloak_DB
       POSTGRES_USER: keycloak_user
       POSTGRES_PASSWORD: POSTGRES_PASSWORD
-    ports:
-      - "5433:5432"
     networks:
       - chaincue_tech_net
 
@@ -46,6 +59,8 @@ services:
 volumes:
   postgres_data_kc_09_26_23:
     name: postgres_data_kc_09_26_23
+  pgadmin_data_09_26_23:
+    name: pgadmin_data_09_26_23
 
 networks:
   chaincue_tech_net:
