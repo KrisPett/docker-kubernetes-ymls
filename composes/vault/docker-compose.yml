@@ -1,9 +1,3 @@
-# https://127.0.0.1:8200/ui/vault/init
-# hvs.72ZGhw0OTuBp4QM4YwjQPXX2
-# lZX778XS9TRvESpKs7U66qn3PVuh8+2QrZILfy5te7I3
-# wSGpbcyHbkyYcsg0b51mNS+BHxYh2Cpas2xVR9SVbPZB
-# /mXS92SITjlaaePJJ8elq+NeAYXV8zQkXlQ+lZzSaMgR
-#
 version: '3.9'
 
 services:
