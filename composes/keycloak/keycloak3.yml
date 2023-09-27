@@ -1,26 +1,6 @@
-# Vault
 version: "3.9"
 
 services:
-  vault:
-    build:
-      context: ./vault
-      dockerfile: Dockerfile
-    container_name: vault-1
-    ports:
-      - "8200:8200"
-    volumes:
-      - ./vault/config:/vault/config
-      - ./vault/policies:/vault/policies
-      - ./vault/data:/vault/data
-      - ./vault/logs:/vault/logs
-    environment:
-      - VAULT_ADDR=http://127.0.0.1:8200
-      - VAULT_API_ADDR=http://127.0.0.1:8200
-    command: server -config=/vault/config/vault-config.json
-    cap_add:
-      - IPC_LOCK
-
   postgres_kc_09_26_23:
     container_name: postgres_kc_09_26_23
     image: postgres:16
@@ -31,7 +11,7 @@ services:
     environment:
       POSTGRES_DB: keycloak_DB
       POSTGRES_USER: keycloak_user
-      POSTGRES_PASSWORD: POSTGRES_PASSWORD
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       - chaincue_tech_net
 
@@ -47,7 +27,7 @@ services:
       KC_DB_URL_HOST: postgres_kc_09_26_23
       KC_DB_URL_DATABASE: keycloak_DB
       KC_DB_USERNAME: keycloak_user
-      KC_DB_PASSWORD: POSTGRES_PASSWORD
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
       KC_DB_SCHEMA: public
       KC_HOSTNAME: localhost
       KC_HOSTNAME_ADMIN: localhost
