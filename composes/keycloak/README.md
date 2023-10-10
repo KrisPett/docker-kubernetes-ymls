@@ -7,6 +7,6 @@ https://quay.io/repository/keycloak/keycloak?tab=info
 
 - export POSTGRES_PASSWORD=postgres_password
 - mkdir certs && cd certs
-- openssl req -newkey rsa:2048 -new -nodes -keyout localhost.key -x509 -days 365 -out localhost.crt
+- **openssl req -newkey rsa:2048 -new -nodes -keyout localhost.key -x509 -days 365 -out localhost.crt**
 - chmod 777 localhost.crt localhost.key
 - https://0.0.0.0:8443/

@@ -19,11 +19,11 @@ services:
       KC_DB_SCHEMA: public
       KC_HOSTNAME: example.com
       KC_HOSTNAME_ADMIN: example.com
-      KC_HTTPS_CERTIFICATE_FILE: /etc/x509/https/cert.pem
+      KC_HTTPS_CERTIFICATE_FILE: /etc/x509/https/fullchain.pem
       KC_HTTPS_CERTIFICATE_KEY_FILE: /etc/x509/https/privkey.pem
+      KC_PROXY: "edge"
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      PROXY_ADDRESS_FORWARDING: "true"
     volumes:
       - ./certs:/etc/x509/https
     networks:
