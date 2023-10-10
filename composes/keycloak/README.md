@@ -2,6 +2,8 @@ https://hub.docker.com/_/postgres
 
 https://quay.io/repository/keycloak/keycloak?tab=info
 
+https://www.keycloak.org/server/all-config
+
 - image: quay.io/keycloak/keycloak:19.0.3-legacy
 - image: quay.io/keycloak/keycloak:22.0
 
