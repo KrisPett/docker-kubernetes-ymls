@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  keycloak_10_10_23:
+    container_name: keycloak_10_10_23
+    image: quay.io/keycloak/keycloak:22.0
+    command: [ "start" ]
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    env_file:
+      - .env
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: <private_ip>
+      KC_DB_URL_PORT: 5433
+      KC_DB_URL_DATABASE: keycloak_DB
+      KC_DB_USERNAME: keycloak_user
+      KC_DB_SCHEMA: public
+      KC_HOSTNAME: example.com
+      KC_HOSTNAME_ADMIN: example.com
+      KC_HTTPS_CERTIFICATE_FILE: /etc/x509/https/cert.pem
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /etc/x509/https/privkey.pem
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      PROXY_ADDRESS_FORWARDING: "true"
+    volumes:
+      - ./certs:/etc/x509/https
+    networks:
+      - chaincue_tech_net
+
+volumes:
+  postgres_data_kc_10_10_23:
+    name: postgres_data_kc_10_10_23
+
+networks:
+  chaincue_tech_net:
+    name: chaincue_tech_net
+    driver: bridge
