@@ -38,7 +38,7 @@ services:
 #      - ../themes/teacher-portal/base/:/opt/keycloak/themes/bases/teacher-portal/
 #      - ../themes/teacher-portal/teacher-portal/:/opt/keycloak/themes/teacher-portal/
 #      - ../themes/student-portal/base/:/opt/keycloak/themes/bases/student-portal/
-#      - ../themes/student-portal/teacher-portal/:/opt/keycloak/themes/student-portal/
+#      - ../themes/student-portal/student-portal/:/opt/keycloak/themes/student-portal/
     depends_on:
       - postgres
     networks:
