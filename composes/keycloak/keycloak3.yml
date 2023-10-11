@@ -23,7 +23,7 @@ services:
     image: quay.io/keycloak/keycloak:22.0
     command: [ "start" ]
     ports:
-#      - "8080:8080"
+      - "8080:8080"
       - "8443:8443"
     environment:
       KC_DB: postgres
@@ -41,6 +41,7 @@ services:
       PROXY_ADDRESS_FORWARDING: "true"
     volumes:
       - ./certs:/etc/x509/https
+      - /keycloak-theme:/opt/jboss/keycloak/themes/keycloak/
     depends_on:
       - postgres_kc_09_26_23
     networks:
